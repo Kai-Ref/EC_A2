@@ -47,7 +47,9 @@ def one_one_EA(func, budget = None):
         x = x_opt
         f_opt = func(x_opt)
         for i in range(budget):
+            #create a random array and see if any of their values have probability 1/n
             flips = np.random.rand(func.meta_data.n_variables) <= (1/func.meta_data.n_variables)
+            #flip those bits
             x = np.bitwise_xor(x, flips)
             f = func(x)
             if f > f_opt:
@@ -61,7 +63,7 @@ def one_one_EA(func, budget = None):
     return f_opt, x_opt  
 
 # Declaration of problems to be tested.
-om = get_problem(fid = 1, dimension=50, instance=1, problem_class = ProblemClass.PBO)
+om = get_problem(fid = 1, dimension=100, instance=1, problem_class = ProblemClass.PBO)
 lo = get_problem(fid = 2, dimension=50, instance=1, problem_class = ProblemClass.PBO)
 labs = get_problem(fid = 18, dimension=50, instance=1, problem_class = ProblemClass.PBO)
 
@@ -77,12 +79,6 @@ l = logger.Analyzer(root="data",
 
 om.attach_logger(l)
 one_one_EA(om)
-
-lo.attach_logger(l)
-one_one_EA(lo)
-
-labs.attach_logger(l)
-one_one_EA(labs)
 
 # This statemenet is necessary in case data is not flushed yet.
 del l
