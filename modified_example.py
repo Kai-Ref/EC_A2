@@ -15,7 +15,7 @@ def random_search(func, budget = None):
         optimum = func.optimum.y
     print(optimum)
     # 10 independent runs for each algorithm on each problem.
-    for r in range(1000):
+    for r in range(10):
         f_opt = sys.float_info.min
         x_opt = None
         for i in range(budget):
