@@ -11,6 +11,5 @@ class ACO:
         return solution
 
     def update_pheromone(self, best_solution, reward):
-        evaporation = (1-self.evaporation_rate)  * self.pheromone
-        self.pheromone += evaporation
+        self.pheromone =(1-self.evaporation_rate)  * self.pheromone
         self.pheromone[np.arange(self.number_bits), best_solution] += reward * self.evaporation_rate
