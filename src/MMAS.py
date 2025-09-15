@@ -18,9 +18,9 @@ def mmas(func, budget=None, evaporation_rate=0.02):
         optimum = func.optimum.y
     print(f"The optimal value is {optimum}")
     # 10 independent runs for each algorithm on each problem.
-    for _ in tqdm(range(100),desc="Runs"):
+    for _ in tqdm(range(10),desc="Runs"):
         aco = ACO(number_bits=func.meta_data.n_variables, evaporation_rate=evaporation_rate)
-        f_opt = sys.float_info.min
+        f_opt = 0.0
         x_opt = None
         for _ in tqdm(range(budget)):
             x = aco()
@@ -28,9 +28,7 @@ def mmas(func, budget=None, evaporation_rate=0.02):
             if f > f_opt or x_opt is None:
                 f_opt = f
                 x_opt = x
-            if f_opt >= optimum:
-                break
-            aco.update_pheromone(x_opt, f_opt)
+            aco.update_pheromone(x_opt)
         print(f"Best found solution: f={f_opt}, x={x_opt}")
         func.reset()
     return f_opt, x_opt
@@ -53,7 +51,7 @@ evaporation_rate = args.evaporation_rate
 
 l = logger.Analyzer(
     root="data",
-    folder_name=f"run_star_evap_{evaporation_rate}",
+    folder_name=f"mmas_star_evap_{evaporation_rate}",
     algorithm_name="mmas",
     algorithm_info=f"test of IOHexperimenter in python, evaporation_rate={evaporation_rate}",
 )
