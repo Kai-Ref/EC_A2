@@ -5,6 +5,7 @@ import numpy as np
 from tqdm import tqdm
 from aco import ACO
 import argparse
+import time
 
 
 # Please replace this `random search` by your `genetic algorithm`.
@@ -16,21 +17,32 @@ def mmas(func, budget=None, evaporation_rate=0.02):
         optimum = 8
     else:
         optimum = func.optimum.y
-    print(f"The optimal value is {optimum}")
+    # print(f"The optimal value is {optimum}")
     # 10 independent runs for each algorithm on each problem.
-    for _ in tqdm(range(10),desc="Runs"):
+    start = time.time()
+    average_time_70 = 0
+    for _ in tqdm(range(100),desc="Runs"):
         aco = ACO(number_bits=func.meta_data.n_variables, evaporation_rate=evaporation_rate)
         f_opt = 0.0
+        time_70 = None
+        start_this_run = time.time()
         x_opt = None
-        for _ in tqdm(range(budget)):
+        for _ in range(budget):
             x = aco()
             f = func(x)
-            if f > f_opt or x_opt is None:
+            if f >= f_opt or x_opt is None:
                 f_opt = f
                 x_opt = x
+            if f_opt >= optimum:
+                break
+            if f_opt >= 0.7 * optimum and time_70 is None:
+                time_70 = time.time() - start_this_run
+                average_time_70 += time_70
             aco.update_pheromone(x_opt)
-        print(f"Best found solution: f={f_opt}, x={x_opt}")
+        # print(f"Best found solution: f={f_opt}, x={x_opt}")
         func.reset()
+    end = time.time()
+    print(f"Total time for 100 runs: {end - start} seconds, average time per run: {(end - start) / 100} seconds, evaporation rate: {evaporation_rate}, average time to reach 70% of optimum: {average_time_70 / 100} seconds")
     return f_opt, x_opt
 
 
@@ -51,8 +63,8 @@ evaporation_rate = args.evaporation_rate
 
 l = logger.Analyzer(
     root="data",
-    folder_name=f"mmas_star_evap_{evaporation_rate}",
-    algorithm_name="mmas",
+    folder_name=f"mmas_{evaporation_rate}_evap",
+    algorithm_name=f"mmas_{evaporation_rate}",
     algorithm_info=f"test of IOHexperimenter in python, evaporation_rate={evaporation_rate}",
 )
 om.attach_logger(l)
