@@ -1,3 +1,11 @@
+Exercise 2:
+    Run instructions:
+     - run the exercise 2 script via a command prompt and pass a function name as a parameter.
+      - the arguements are "one" for (1+1), "ran" for random search, "rls" for RLS EA.
+     - the results will be in the folder data/ex2. zip the result folder and view it online at https://iohanalyzer.liacs.nl/
+
+
+
 Exercise 3 GA (Uniform Crossover):
     Run:
         python EC_A2-Exercise2/ga_uniform.py
