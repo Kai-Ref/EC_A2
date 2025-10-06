@@ -1,1 +1,16 @@
+Group Members:
+Reffert, Kai (1989953)
+Sharada, Bangamuarachchi (a1874722)
+Csizmadia, Gabriel (a1852152)
+Glastonbury, Dylan
+Gern, Marcel (1991159)
+Rahman, Md Raiyan (a1872756)
+
+Contributions:
+
+Raiyan:
+- Worked on Exercise 2 
+  - Derived and proved that Random Search needs at least 2^(n/2) evaluations with probability 1 - e^(-Ω(n)) on F1 (OneMax) to reach optimum search point 
+  - Derived and proved that both RLS and (1+1) EA reach optimal search point on F3 in O(n log n) evaluations with constant probability
+
 
