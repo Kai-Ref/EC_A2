@@ -32,3 +32,8 @@ Marcel:
 - Worked on Exercise 4
   - Implemented MMAS and MMAS* algorithms
   - Ran experiments and collected data for analysis
+
+Bangamuarachchi
+- Worked on Exercise 3
+  - Implemented the GA 
+  - Ran the experiments and analyzed the results
