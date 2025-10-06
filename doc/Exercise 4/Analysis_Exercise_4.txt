@@ -1,0 +1,54 @@
+Exercise 4 — MMAS and MMAS* Results and Analysis
+
+Problem setting
+---------------
+- Problem size: n = 100.
+- Parameter p: p in {1, 0.1, 0.001}.
+
+Analysis of the results (summary of observations)
+-------------------------------------------------
+1. Overall performance.
+   Across many benchmark functions (F1, F3, F18, F23, F24, F25) the configurations with p=0.001 tend to perform worse than the other p-settings, roughly between 100 and 1000 function evaluations. 
+   Their median curves are lower and climb more slowly toward the optimum.
+
+2. Time to optimum.
+   Those same poorer-performing configurations also take longer to reach the optimal function value (an explicit example is function F3), 
+   i.e. they need more evaluations to close the gap to the optimum.
+
+3. Standard deviation behaviour.
+   Surprisingly, the poorer median performance comes with smaller standard deviation: the runs are more tightly clustered. 
+   In other words, small-p configurations produce steadier but slower progress—less spread across runs—than large-p configurations. 
+   This is especially clear in F3.
+
+4. Correlation between p and variability.
+   The standard deviation appears to correlate inversely with p: the smaller the p value used, the smaller the observed standard deviation. 
+   This suggests smaller p produces more consistent but slower convergence; larger p produces faster (sometimes) but more variable runs.
+
+5. Very early behaviour.
+   In the first 10 evaluations, algorithms with the largest p tend to perform worst on average and also show the largest standard deviation (see F1 and F3). 
+   So high p hurts immediate, very-short-term performance and causes large variability initially.
+
+Comparison to Exercise 2
+------------------------
+Key differences observed when comparing MMAS / MMAS* results to the Exercise 2 plots:
+
+- Higher final function values / faster rise.
+  In many cases (example: F2), the MMAS-family runs reach much higher function values by the end of the budget than the algorithms/variants from Exercise 2. 
+  This is driven by a faster (almost exponential-looking) progression in the mid-phase of runs.
+
+- Main improvement window: 100–1000 evals.
+  The largest relative change compared to Exercise 2 occurs between 100 and 1000 function evaluations: 
+  curves from MMAS/MMAS* are much steeper in this region than in Exercise 2, indicating these ACO variants exploit the search more aggressively there.
+
+- Standard deviation trends.
+  The initial standard deviation across configurations starts similarly to Exercise 2, 
+  but toward the end of the budget the MMAS algorithms generally show smaller standard deviation than the prior methods—consistent with pheromone-guided convergence producing more concentrated behaviour late in runs.
+
+Concrete interpretation / insights
+----------------------------------
+- Exploration vs exploitation trade-off. The parameter p (and the differences between MMAS and MMAS*) controls how strongly pheromone updates bias the sampling. 
+    Smaller p reduces variability and yields steadier progress (exploitation-conservative), 
+    while larger p increases variability and occasionally allows faster jumps but at the risk of poor early performance.
+
+- MMAS vs MMAS*. Both algorithms show the same qualitative trends with respect to p. 
+    Where differences appear, they are in magnitude of improvement and spread, but the general message (smaller p → smaller spread but slower median improvement) holds for both.
