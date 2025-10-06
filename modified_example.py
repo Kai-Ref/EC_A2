@@ -7,15 +7,12 @@ import numpy as np
 def random_search(func, budget = None):
     # budget of each run: 50n^2
     if budget is None:
-        budget = int(func.meta_data.n_variables * func.meta_data.n_variables * 50)
+        budget = int(100000)
 
-    if func.meta_data.problem_id == 18 and func.meta_data.n_variables == 32:
-        optimum = 8
-    else:
-        optimum = func.optimum.y
+    optimum = func.optimum.y
     print(optimum)
     # 10 independent runs for each algorithm on each problem.
-    for r in range(10):
+    for r in range(1000):
         f_opt = sys.float_info.min
         x_opt = None
         for i in range(budget):
@@ -31,15 +28,44 @@ def random_search(func, budget = None):
 
 
 #I just copied the random search and changed the function
+def RLS_EA(func, budget = None):
+    # Im pretty sure budget is number of iterations
+    if budget is None:
+        budget = int(100000)
+
+    optimum = func.optimum.y
+    print(optimum)
+    # 10 independent runs for each algorithm on each problem.
+    for r in range(10):
+        x_opt = np.random.randint(2, size = func.meta_data.n_variables)
+        x = x_opt
+        f_opt = func(x_opt)
+        for i in range(budget):
+            #choose a random bit to flip
+            flip = np.random.randint(func.meta_data.n_variables)
+            #flip that bits
+            if x[flip] == 1:
+                x[flip] = 0
+            else:
+                x[flip] = 1
+            
+            f = func(x)
+            if f > f_opt:
+                f_opt = f
+                x_opt = x
+            if f_opt >= optimum:
+                break
+
+            
+        func.reset()
+    return f_opt, x_opt  
+
 def one_one_EA(func, budget = None):
     # Im pretty sure budget is number of iterations
     if budget is None:
         budget = int(100000)
 
-    if func.meta_data.problem_id == 18 and func.meta_data.n_variables == 32:
-        optimum = 8
-    else:
-        optimum = func.optimum.y
+    optimum = func.optimum.y
     print(optimum)
     # 10 independent runs for each algorithm on each problem.
     for r in range(10):
@@ -64,21 +90,42 @@ def one_one_EA(func, budget = None):
 
 # Declaration of problems to be tested.
 om = get_problem(fid = 1, dimension=100, instance=1, problem_class = ProblemClass.PBO)
-lo = get_problem(fid = 2, dimension=50, instance=1, problem_class = ProblemClass.PBO)
-labs = get_problem(fid = 18, dimension=50, instance=1, problem_class = ProblemClass.PBO)
-
+lo = get_problem(fid = 2, dimension=100, instance=1, problem_class = ProblemClass.PBO)
+lhw = get_problem(fid = 3, dimension=100, instance=1, problem_class = ProblemClass.PBO)
+labs = get_problem(fid = 18, dimension=100, instance=1, problem_class = ProblemClass.PBO)
+nqp = get_problem(fid = 23, dimension=100, instance=1, problem_class = ProblemClass.PBO)
+ct = get_problem(fid = 24, dimension=100, instance=1, problem_class = ProblemClass.PBO)
+nkl = get_problem(fid = 25, dimension=100, instance=1, problem_class = ProblemClass.PBO)
 
 # Create default logger compatible with IOHanalyzer
 # `root` indicates where the output files are stored.
 # `folder_name` is the name of the folder containing all output. You should compress this folder and upload it to IOHanalyzer
-l = logger.Analyzer(root="data", 
+l_rls = logger.Analyzer(root="data", 
     folder_name="run", 
-    algorithm_name="(1+1)EA", 
-    algorithm_info="test of IOHexperimenter in python with the (1+1)EA")
+    algorithm_name="RLS-EA", 
+    algorithm_info="test of IOHexperimenter in python with the RLS EA")
 
 
-om.attach_logger(l)
-one_one_EA(om)
+om.attach_logger(l_rls)
+RLS_EA(om)
+
+lo.attach_logger(l_rls)
+RLS_EA(lo)
+
+lhw.attach_logger(l_rls)
+RLS_EA(lhw)
+
+labs.attach_logger(l_rls)
+RLS_EA(labs)
+
+nqp.attach_logger(l_rls)
+RLS_EA(nqp)
+
+ct.attach_logger(l_rls)
+RLS_EA(ct)
+
+nkl.attach_logger(l_rls)
+RLS_EA(nkl)
 
 # This statemenet is necessary in case data is not flushed yet.
-del l
+del l_rls
