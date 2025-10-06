@@ -30,3 +30,5 @@ Kai:
 
 Marcel:
 - Worked on Exercise 4
+  - Implemented MMAS and MMAS* algorithms
+  - Ran experiments and collected data for analysis
