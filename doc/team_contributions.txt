@@ -15,8 +15,8 @@ Dylan:
 
 Raiyan:
 - Worked on Exercise 2 
-  - Derived and proved that Random Search needs at least 2^(n/2) evaluations with probability 1 - e^(-Ω(n)) on F1 (OneMax) to reach optimum search point 
-  - Derived and proved that both RLS and (1+1) EA reach optimal search point on F3 in O(n log n) evaluations with constant probability
+  - Derived and proved that Random Search needs at least 2^(n/2) evaluations with probability 1 - e^(-Ω(n)) on F1 (OneMax) to reach optimum search point (F1Proof.pdf)
+  - Derived and proved that both RLS and (1+1) EA reach optimal search point on F3 in O(n log n) evaluations with constant probability (F3Proof.pdf)
 
 Gabriel:
 - Worked on Exercise 5
