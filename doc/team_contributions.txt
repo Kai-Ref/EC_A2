@@ -2,11 +2,16 @@ Group Members:
 Reffert, Kai (1989953)
 Sharada, Bangamuarachchi (a1874722)
 Csizmadia, Gabriel (a1852152)
-Glastonbury, Dylan
+Glastonbury, Dylan (a1883934)
 Gern, Marcel (1991159)
 Rahman, Md Raiyan (a1872756)
 
 Contributions:
+
+Dylan:
+- Worked on Exercise 2 
+  - Developed the RLS EA and the (1+1) EA in Exercise 2 Python Script
+  - Ran Random Search, RLS, and (1+1) for functions specified in Exercise 2 and wrote results summary
 
 Raiyan:
 - Worked on Exercise 2 
