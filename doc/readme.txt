@@ -9,6 +9,14 @@ Exercise 3 GA (Uniform Crossover):
     GA config:
         pc=1.0, pm≈1/n, μ=20, λ=20, tournament k=3, (μ+λ) elitism, 10 runs, budget=100000.
 
+Exercise 4:
+    Run:
+        python EC_A2-Exercise4/final/code/MMAS.py
+    Outputs:
+        logs -> data/ (as seen in EC_A2-Exercise4/final/code/data/)    
+    Plotting:
+        Zip data/ and upload to IOHanalyzer (online).
+
 
 Exercise 5
     Run instructions:
