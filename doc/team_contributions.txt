@@ -18,6 +18,12 @@ Raiyan:
   - Derived and proved that Random Search needs at least 2^(n/2) evaluations with probability 1 - e^(-Ω(n)) on F1 (OneMax) to reach optimum search point (F1Proof.pdf)
   - Derived and proved that both RLS and (1+1) EA reach optimal search point on F3 in O(n log n) evaluations with constant probability (F3Proof.pdf)
 
+Sharada:
+- Worked on Exercise 3 (Genetic Algorithm).
+  - Implemented GA with uniform crossover (pc=1.0, pm≈1/n, μ=λ=20, k=3, (μ+λ) elitism).
+  - Ran F1, F2, F3, F18, F23, F24, F25 (n=100, 10 runs, 100k evals); exported IOHanalyzer plots and final-budget table.
+  - Wrote the analysis comparing GA vs Random, RLS-EA, and (1+1)-EA; organized code and results in final.
+
 Gabriel:
 - Worked on Exercise 5
   - Developed custom ACO and ran testing and tuning
@@ -32,8 +38,3 @@ Marcel:
 - Worked on Exercise 4
   - Implemented MMAS and MMAS* algorithms
   - Ran experiments and collected data for analysis
-
-Bangamuarachchi
-- Worked on Exercise 3
-  - Implemented the GA 
-  - Ran the experiments and analyzed the results
