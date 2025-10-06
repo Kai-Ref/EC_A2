@@ -22,3 +22,11 @@ Gabriel:
 - Worked on Exercise 5
   - Developed custom ACO and ran testing and tuning
   - Wrote analysis of custom ACO and compared results with MMAS and MMAS*
+
+Kai:
+- Worked on Exercise 4
+  - Conducted experiments with different parameter settings (p in {1, 0.1, 0.001}) for MMAS and MMAS*
+  - Analyzed results and wrote summary of observations and comparisons with Exercise 2
+
+Marcel:
+- Worked on Exercise 4
